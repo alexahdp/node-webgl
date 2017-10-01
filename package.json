@@ -1,5 +1,8 @@
 {
-  "author": "Mikael Bourges-Sevenier <mikeseven@gmail.com>",
+  "author": {
+    "name": "Mikael Bourges-Sevenier",
+    "email": "mikeseven@gmail.com"
+  },
   "name": "node-webgl",
   "description": "WebGL bindings for node",
   "version": "0.5.5",
@@ -20,15 +23,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikeseven/node-webgl.git"
+    "url": "git+https://github.com/mikeseven/node-webgl.git"
   },
   "scripts": {
     "install": "node-gyp rebuild"
   },
-  "license" : "BSD-3-Clause",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "bindings": "^1.2.1",
     "nan": "^2.1.0",
     "node-glfw": ">=0.4.0"
-  }
+  },
+  "readme": "This is a Node.JS port of WebGL for desktops: windows, linux, mac\n\nIt started as an extension of creationix/node-webgl and their great example com.creationix.minimason that \nyou can find in examples/wavefront.js. However, it is now quite different and support different platform \nbindings, mainly GLFW instead of SDL.\n\nDependencies\n============\n- node-glfw, which depends on GLEW, GLFW as well as AntTweakBar. See node-glfw for installation instructions.\n- freeimage is used to load/save a variety of image formats.\n- node-gyp if not already available in your distribution\n\nInstallation\n============\n`npm install node-webgl`\n\n###Installation Notes for Windows 7\nBeware of the Node.JS distribution you use. The default Node.JS is 32-bit and this means that modules \nwill be compiled by node-gyp with 32-bit settings, which often leads to compilation errors especially\non 64-bit systems.\n\nSo for Windows 7 64-bit, instead of downloading the default Node.JS windows installer, select 'Other release files'.\nThis will show you an ftp site for the latest release. Go into x64 folder and download that distribution.\n\n###Installation Notes for OSX\n`brew install anttweakbar freeimage`\n\nUsage\n=====\nexamples/   contains examples from other the web\ntest/       contains lessons from www.learningwebgl.com and other tests\n\nsimply type: node test/lesson02.js\n\nEnjoy!\n\nLimitations\n===========\nWebGL is based on OpenGL ES, a restriction of OpenGL found on desktops, for embedded systems.\nBecause this module wraps OpenGL, it is possible to do things that may not work on web browsers. \nPlease read http://www.khronos.org/webgl/wiki_1_15/index.php/WebGL_and_OpenGL_Differences \nto learn about the differences.\n\n- shaders\nRemember to add this on top of your fragment shaders:\n<pre>\n#ifdef GL_ES\nprecision highp float;\n#endif\n</pre>\n\n- loading external scripts\nIf your code uses external libraries, you can load them like this. No code change to external scripts ;-)\n<pre>\nfs=require('fs');\neval(fs.readFileSync(__dirname+ '/glMatrix-0.9.5.min.js','utf8'));\n</pre>\n\n- frame rate\nrequestAnimationFrame(callback [, delay]) works as in the browser. \nIf delay is specified, it is the requested delay in milliseconds between animation frames \ne.g. 16 will provide 1000 / 16 = 62 fps at best, which is the default value if delay is undefined. \nIf delay = 0, then the fastest possible framerate on your machine is used.\n\nThe timestamp now uses the high-resolution timer in your machine (not new Date()). This provides a much more precise\nframerate as well as much better timing for animations.\n",
+  "readmeFilename": "README.md",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/mikeseven/node-webgl/issues"
+  },
+  "homepage": "https://github.com/mikeseven/node-webgl#readme",
+  "_id": "node-webgl@0.5.5",
+  "_shasum": "4f4788ffe85b64174b5ab4cc0cb0912db61878dc",
+  "_from": "node-webgl",
+  "_resolved": "file:node-webgl"
 }

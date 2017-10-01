@@ -32,9 +32,12 @@
         ],
         ['OS=="linux"', {
           'libraries': [
-            '-lfreeimage','-lGLEW','-lGL']
-          }
-        ],
+            '-lfreeimage','-lGLEW','-lGL'
+          ],
+          'library_dirs': [
+            "/usr/lib32/nvidia-352"
+          ]
+        }],
         ['OS=="win"',
           {
             'include_dirs': [
